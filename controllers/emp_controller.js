@@ -34,12 +34,12 @@ const EmpController = {
   },
 
   updateEmp: async (req, res) => {
-    const { empId } = req.params; // assuming you have empId in your route
+    const { empId } = req.params; 
     const updateData = req.body;
 
     try {
       const updatedUser = await Emp.findByIdAndUpdate(empId, updateData, {
-        new: true, // returns the modified document rather than the original
+        new: true, 
       });
 
       if (!updatedUser) {
@@ -64,8 +64,27 @@ const EmpController = {
       return res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  deleteEmp: async (req, res) => {
+    const { empId } = req.params; 
+
+    try {
+      const deletedUser = await Emp.findByIdAndDelete(empId);
+
+      if (!deletedUser) {
+        return res.status(404).json({ error: "Employee not found" });
+      }
+
+      return res.status(200).json({
+        message: "Employee deleted successfully",
+        emp: deletedUser,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 
 };
 
-const { createEmp, updateEmp, getAllEmp } = EmpController;
-module.exports = { createEmp, updateEmp, getAllEmp };
+const { createEmp, updateEmp, getAllEmp, deleteEmp } = EmpController;
+module.exports = { createEmp, updateEmp, getAllEmp, deleteEmp };

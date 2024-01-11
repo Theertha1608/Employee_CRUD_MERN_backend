@@ -2,6 +2,7 @@ const { default: mongoose } = require("mongoose");
 const { string } = require("yup");
 
 const empSchema = new mongoose.Schema({
+  
   emp_name: {
     type: String,
     required: true,
