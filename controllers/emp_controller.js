@@ -55,7 +55,17 @@ const EmpController = {
       return res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  getAllEmp: async (req, res) => {
+    try {
+      const allEmployees = await Emp.find();
+      return res.status(200).json({ employees: allEmployees });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
 };
 
-const { createEmp, updateEmp } = EmpController;
-module.exports = { createEmp, updateEmp };
+const { createEmp, updateEmp, getAllEmp } = EmpController;
+module.exports = { createEmp, updateEmp, getAllEmp };

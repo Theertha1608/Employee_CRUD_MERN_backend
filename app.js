@@ -17,6 +17,7 @@ app.use("/employee", empRouter);
 
 app.listen(9000, () => {
   console.log("your app is running on port", 9000);
+  console.log("DB URI:", process.env.DB);
   mongoose
     .connect(process.env.DB)
     .then(() => {
@@ -25,4 +26,5 @@ app.listen(9000, () => {
     .catch((error) => {
       console.log(error);
     });
+  
 });
