@@ -1,4 +1,4 @@
-// In your route file (e.g., empRoutes.js)
+
 const express = require("express");
 const { createEmp, updateEmp, getAllEmp, deleteEmp} = require("../controllers/emp_controller");
 
